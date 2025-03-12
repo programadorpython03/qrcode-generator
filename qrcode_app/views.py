@@ -22,7 +22,7 @@ def generate_qrcode(request):
             link=link,
             file=file,
             is_temporary=is_temporary,
-            expiration_date=expiration_date
+            expiration_date=datetime.now() + timedelta(days=expiration_days) if is_temporary else None
         )
         qr.save()
 
