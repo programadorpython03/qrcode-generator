@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/home/frederico-magalhaes/Área de trabalho/estudos/qr-code/venv/bin/python3" "$0" "$@"
+'''exec' "/home/frederico-magalhaes/Área de trabalho/estudos/qr_code/venv/bin/python3" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re

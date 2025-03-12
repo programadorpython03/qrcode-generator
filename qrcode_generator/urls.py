@@ -6,7 +6,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('generate/', views.generate_qrcode, name='generate_qrcode'),
+    path('', views.generate_qrcode, name='generate_qrcode'),
     path('qrcode/<uuid:qr_id>/', views.qrcode_detail, name='qrcode_detail'),
 ]
 
