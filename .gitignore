@@ -44,3 +44,9 @@ qrcode/images/*.jpeg
 qrcode/images/*.bmp
 qrcode/images/*.tiff
 qrcode/images/*.webp
+qrcode/logo/*.png
+qrcode/logo/*.svg
+qrcode/logo/*.pdf
+qrcode/logo/*.jpg
+qrcode/logo/*.jpeg
+qrcode/logo/*.bmp
