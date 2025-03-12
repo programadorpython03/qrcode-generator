@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes QR Code</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-center">
+        <h1 class="text-2xl font-bold mb-6">Detalhes QR Code</h1>
+        {% if qr.is_expired %}
+            <p class="text-red-500">This QR code has expired.</p>
+        {% else %}
+            <img src="{{ qr.qrcode_image.url }}" alt="QR Code" class="mx-auto mb-4">
+            {% if qr.link %}
+                <p class="text-gray-700">Endreço: <a href="{{ qr.link }}" class="text-indigo-600 hover:underline">{{ qr.link }}</a></p>
+            {% elif qr.file %}
+                <p class="text-gray-700">Arquivo: <a href="{{ qr.file.url }}" class="text-indigo-600 hover:underline">Baixar</a></p>
+            {% endif %}
+        {% endif %}
+        <a href="/generate/" class="mt-4 inline-block text-indigo-600 hover:underline">Gerar um novo QR Code</a>
+    </div>
+</body>
+</html>

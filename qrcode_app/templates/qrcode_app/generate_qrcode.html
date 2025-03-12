@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de QR Code</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Função para mostrar/ocultar o campo expiration_days
+        function toggleExpirationDays() {
+            const expirationDaysField = document.getElementById('expiration_days_field');
+            const isTemporaryCheckbox = document.getElementById('is_temporary');
+            if (isTemporaryCheckbox.checked) {
+                expirationDaysField.classList.remove('hidden');
+            } else {
+                expirationDaysField.classList.add('hidden');
+            }
+        }
+
+        // Executa a função ao carregar a página
+        document.addEventListener('DOMContentLoaded', function () {
+            toggleExpirationDays(); // Configura o estado inicial
+            document.getElementById('is_temporary').addEventListener('change', toggleExpirationDays);
+        });
+    </script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-2xl font-bold text-center mb-6">Generate QR Code</h1>
+        <form method="post" enctype="multipart/form-data" class="space-y-4">
+            {% csrf_token %}
+            <div>
+                <label for="link" class="block text-sm font-medium text-gray-700">Endereço:</label>
+                <input type="url" name="link" id="link" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <div>
+                <label for="file" class="block text-sm font-medium text-gray-700">Arquivo:</label>
+                <input type="file" name="file" id="file" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
+            </div>
+            <div class="flex items-center">
+                <input type="checkbox" name="is_temporary" id="is_temporary" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                <label for="is_temporary" class="ml-2 block text-sm text-gray-900">QR Code Temporário</label>
+            </div>
+            <div id="expiration_days_field" class="hidden">
+                <label for="expiration_days" class="block text-sm font-medium text-gray-700">Período válido:</label>
+                <input type="number" name="expiration_days" id="expiration_days" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Gerar QR Code
+            </button>
+        </form>
+    </div>
+</body>
+</html>
